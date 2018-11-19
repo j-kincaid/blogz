@@ -8,6 +8,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:greenenchiladas@l
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
+######### Sunday 11/18/18 I have blog and user tables and will resume tomorrow ##################
+
 class Blog(db.Model): # Create an instance of the Blog class
     id = db.Column(db.Integer, primary_key=True) # Cretes a new property of our class that will map to an integer column in the blog table. The column name will be generated from the property name to be id as well. The column will be a primary key column on the table.
     #The name is the column within blog name
