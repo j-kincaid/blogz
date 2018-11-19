@@ -8,15 +8,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:greenenchiladas@l
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
-######### Sunday 11/18/18 I have blog and user tables and will resume tomorrow ##################
-############# Wait, it says storing passwords in the db is not a good idea, so I will modify it accordingly.
+############# Storing passwords in the db is not a good idea, so eventually I will modify it accordingly.
 
 class Blog(db.Model): # Create an instance of the Blog class
-    id = db.Column(db.Integer, primary_key=True) # Cretes a new property of our class that will map to an integer column in the blog table. The column name will be generated from the property name to be id as well. The column will be a primary key column on the table.
-    #The name is the column within blog name
-    title = db.Column(db.String(500)) # Creates a property that will map to a column of type VARCHAR(120) in the blog table.
+    id = db.Column(db.Integer, primary_key=True) 
+    title = db.Column(db.String(200)) # Creates a property that will map to a column of type VARCHAR(200) in the blog table.
     body = db.Column(db.String(2000))
-    # added = db.Column(db.Boolean)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 # Amend the constructor so that it takes in a user (owner) object 
@@ -81,27 +78,27 @@ def process_add_entry():
     
 
 
-    # def register():
-    # if request.method == 'POST': # Create a new user, looking at register.html
-    #     email = request.form['email']
-    #     password = request.form['password']
-    #     verify = request.form['verify']
+    def signup():
+        if request.method == 'POST': # Create a new user, looking at signup.html
+            email = request.form['email']
+            password = request.form['password']
+        #    verify = request.form['verify']
 
-    #     # TODO - validate user's data
+        # TODO - validate user's data
 
-    #     existing_user = User.query.filter_by(email=email).first()
-    #     if not existing_user:
-    #         new_user = User(email, password)
-    #         db.session.add(new_user)
-    #         db.session.commit()
-    #         # TODO - remember the user
-    #         session['email'] = email
-    #         return redirect('/')
-    #     else:
-    #         # TODO - more specific response message
-    #         return "<h1>Duplicate User</h1>"
+        existing_user = User.query.filter_by(email=email).first()
+        if not existing_user:
+            new_user = User(email, password)
+            db.session.add(new_user)
+            db.session.commit()
+            # TODO - remember the user
+            session['email'] = email
+            return redirect('/')
+        else:
+            # TODO - more specific response message
+            return "<h1>Duplicate User</h1>"
 
-    # return render_template('register.html')
+    return render_template('signup.html')
 
 if __name__ == '__main__':
 
