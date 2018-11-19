@@ -50,9 +50,9 @@ def index():
     blogz = Blog.query.all()
     return render_template('blog.html', blogz=blogz)
 
-# @app.route('/blog') # The blog route displays all posts.
-# def index():
-#     return render_template('blog.html')
+#### I don't know how I'm going to do this yet ##########
+### Add in ('/blog', methods=['GET']) # This blog route displays all posts by a single user.
+    # return render_template('singleUser.html')
 
 
 @app.route('/newpost', methods=['POST','GET']) # Submit your blogs through '/newpost' 
