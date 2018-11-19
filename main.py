@@ -1,3 +1,9 @@
+# November 19, 2018
+# Jessica Kincaid
+# Blogz Assignment 
+
+# main.py
+
 from flask import Flask, request, redirect, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask import url_for
@@ -44,8 +50,6 @@ def index():
     blogz = Blog.query.all()
     return render_template('blog.html', blogz=blogz)
 
-
-
 # @app.route('/blog') # The blog route displays all posts.
 # def index():
 #     return render_template('blog.html')
@@ -62,7 +66,6 @@ def process_add_entry():
         
         title = request.form['title']
         body = request.form['body']
-#        added = request.form['added']
         new_blog = Blog(title, body)
         db.session.add(new_blog)
         
@@ -72,7 +75,7 @@ def process_add_entry():
             body_error = 'You must enter a blog post.'
         if not title_error and not body_error: 
             db.session.commit()
-            return redirect(url_for('index',id=new_blog.id))
+            return redirect(url_for('index', id=new_blog.id))
            
     return render_template('newpost.html', title=title, body=body, title_error=title_error, body_error=body_error)
     
@@ -82,7 +85,7 @@ def process_add_entry():
         if request.method == 'POST': # Create a new user, looking at signup.html
             email = request.form['email']
             password = request.form['password']
-        #    verify = request.form['verify']
+            verify = request.form['verify']
 
         # TODO - validate user's data
 

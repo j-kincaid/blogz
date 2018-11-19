@@ -7,3 +7,46 @@ singleUser.html
 
 <!-- 
 This template will display only the blogs associated with a single given author. It will be used when we dynamically generate a page using a GET request with a user query parameter on the /blog route (similar to how we dynamically generated individual blog entry pages in the last assignment). --> 
+
+{% extends "base.html" %}
+{% block content %}
+<!doctype html>
+<html>
+  <body>
+
+        <ul>
+                {% for user in blogz %}
+                
+                <li>
+                    <a href="./?id={{blog.id}}" ></h1>{{blog.owner}}</h1></a>
+                </li>
+                <li>
+                    <p>{{blog.body}}</p>
+                </li>
+                <li>
+                    <p><small>{{blog.username}}</small></p>
+                </li>
+        <hr />
+                {% endfor %}
+            </ul>
+
+    
+    <h1>Add a Blog Entry</h1>
+
+    <form action='/newpost'  method='POST'>
+        <label>Title for your new blog:
+            <input type="text" name="title" value="{{title}}" /><span class="error"style="color:red;">{{title_error}}</span>
+        </label>
+        <br />
+        <br />
+        <label>Write your thoughts:
+        </label> 
+        <br />
+        <textarea rows="6" cols="40" name='body'>{{body}}</textarea><span class="error" style="color:red;" >{{body_error}}</span>
+        <br />
+        <input type="submit" value='Add Entry' />
+    </form>
+  </body>
+</html>
+{% endblock %}
+
