@@ -28,7 +28,7 @@ class User(db.Model):
     username = db.Column(db.String(30))
     password = db.Column(db.String(30))
     user_id = db.Column(db.Integer, db.ForeignKey('blog.id'))
-    blogs = `db.relationship('Blog', backref='user')`
+    # blogs = `db.relationship('Blog', backref='user')`
 
     def __init__(self, username, password):
         self.username = username
