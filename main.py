@@ -14,12 +14,25 @@ class Blog(db.Model): # Create an instance of the Blog class
     title = db.Column(db.String(500)) # Creates a property that will map to a column of type VARCHAR(120) in the blog table.
     body = db.Column(db.String(2000))
     # added = db.Column(db.Boolean)
+    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-# Create a constructor: 
-    def __init__(self, title, body):
+# Amend the constructor so that it takes in a user (owner) object 
+    def __init__(self, title, body, owner):
         self.title = title
         self.body = body
+        self.owner = owner 
 
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(30))
+    password = db.Column(db.String(30))
+    user_id = db.Column(db.Integer, db.ForeignKey('blog.id'))
+    blogs = `db.relationship('Blog', backref='user')`
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
 
 
 @app.route('/', methods=['POST', 'GET'])
