@@ -4,3 +4,25 @@ Blogz Assignment
 
 login.html
 -->
+
+{% extends "base.html" %}
+
+{% block content %} 
+
+<h1>Log in</h1>
+<form action = "/login" method="POST">
+    <label>Username 
+        <input name="username" type = "text" value = "{{username}}" />
+    </label>
+    <p class="error">{{username_error}}</p>
+    <br />
+    <label>Password
+        <input name="password" type="password" value= "{{password}}" />
+    </label>
+    <p class="error">{{password_error}}</p>
+    <br />
+    <input type="submit" value="validate" />
+</form>
+
+
+{% endblock %}

@@ -4,8 +4,6 @@ Blogz Assignment
 
 base.html
 -->
-
-
 <!doctype html>
 <html>
     <head>
@@ -22,10 +20,10 @@ base.html
                 margin: 0 auto;
                 margin: .5em;
             }
-            /* .nav {
-                display: inline;
-            } */
-            .account {
+            ul li {
+                display: inline-block;
+            } 
+            .log {
                 float: right;
             }
             li {
@@ -46,8 +44,8 @@ base.html
             <li><a href='/'>home</a></li>
             <li><a href='/blog'>all posts</a></li>
             <li><a href='/newpost'>new post</a></li>
-            <li class="account"><a href='/login'>log in</a></li>
-            <li class="account"><a href='/logout'>log out</a></li>
+            <li class="log"><a href='/logout'>log out</a></li>
+            <li class="log"><a href='/login'>log in</a></li>
         </ul>
     </nav> 
     {% block content %}

@@ -4,3 +4,34 @@ Blogz Assignment
 
 signup.html
 -->
+{% extends "base.html" %}
+
+{% block content %} 
+
+<h1>Signup</h1>
+<form action = "/" method="POST">
+    <label>Username 
+        <input name="username" type = "text" value = "{{username}}" />
+    </label>
+    <p class="error">{{username_error}}</p>
+    <br />
+    <label>Password
+        <input name="password" type="password" value= "{{password}}" />
+    </label>
+    <p class="error">{{password_error}}</p>
+    <br />
+    <label>Verify Password
+        <input name="v_password" type="password" value = "{{v_password}}" />
+    </label>
+    <p class="error">{{v_password_error}}</p>
+    <br />
+    <label>Email 
+        <input name="email" type = "text" value = "{{email}}" />
+    </label>
+    <p class="error">{{email_error}}</p>
+
+    <br />
+    <input type="submit" value="validate" />
+</form>
+
+{% endblock %}
