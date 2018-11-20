@@ -7,8 +7,16 @@ index.html
 
 
 {% extends "base.html" %}
+<h1>blog users!</h1>
+
+
+    <ul>
+        {% for users in blogz %}
+        <li><a href="post.html">{{user.name}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
 {% block content %}
-
-
 
 {% endblock %}

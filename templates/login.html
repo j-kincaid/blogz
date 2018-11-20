@@ -9,20 +9,25 @@ login.html
 
 {% block content %} 
 
-<h1>Log in</h1>
-<form action = "/login" method="POST">
-    <label>Username 
-        <input name="username" type = "text" value = "{{username}}" />
-    </label>
-    <p class="error">{{username_error}}</p>
-    <br />
-    <label>Password
-        <input name="password" type="password" value= "{{password}}" />
-    </label>
-    <p class="error">{{password_error}}</p>
-    <br />
-    <input type="submit" value="validate" />
+<h1>Log in to Blogz!</h1>
+<p>If you don't have an account, you may <a href="/signup">Create one!</a></p>
+<form action="/login" method="post">
+    <table>
+        <tr>
+            <td><label for="username">Username:</label></td>
+            <td>
+                <input name="username" type="username" value="{{ username }}">
+            </td>
+        </tr>
+        <tr>
+            <td><label for="password">Password</label></td>
+            <td>
+                <input name="password" type="password">
+            </td>
+        </tr>
+    </table>
+    <p>{{login_error}}</p>
+    <input type="submit" value="Login">
 </form>
-
 
 {% endblock %}

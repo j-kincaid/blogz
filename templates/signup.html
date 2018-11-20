@@ -9,19 +9,19 @@ signup.html
 {% block content %} 
 
 <h1>Signup</h1>
-<form action = "/" method="POST">
+<form action = "/signup" method="POST">
     <label>Username 
         <input name="username" type = "text" value = "{{username}}" />
     </label>
     <p class="error">{{username_error}}</p>
     <br />
     <label>Password
-        <input name="password" type="password" value= "{{password}}" />
+        <input name="password" type="password"/>
     </label>
     <p class="error">{{password_error}}</p>
     <br />
     <label>Verify Password
-        <input name="v_password" type="password" value = "{{v_password}}" />
+        <input name="v_password" type="password"/>
     </label>
     <p class="error">{{v_password_error}}</p>
     <br />
