@@ -149,6 +149,20 @@ def login():
     return render_template('login.html', login_error=login_error)
 
 
+# ###################_______________##################
+# Time to stop for 11/19. Return at Functionality Check:
+###############_ MAKE A HOMEPAGE _##############
+# # the Home page (index.html) will display the posts by one user
+# # all on one page. 
+# # @app.route('/index', methods=['POST', 'GET'])
+# # def index():
+#     owner = User.query.filter_by(username=session['username']).first()
+# #     if request.method == 'POST':
+#         blog_name = request.form['blog']
+#         new_blog = Blog()
+
+
+
 #`''``From get-it-done''`
 # @app.route('/', methods=['POST', 'GET'])
 # def index():
