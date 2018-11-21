@@ -149,9 +149,14 @@ def login():
     return render_template('login.html', login_error=login_error)
 
 
-# ###################_______________##################
-# Time to stop for 11/19. Return at Functionality Check:
+# ################### Functionality Check: ##################
 ###############_ MAKE A HOMEPAGE _##############
+# User is logged in and adds a new blog post, then is redirected to a page featuring the individual blog entry they just created (as in Build-a-Blog).
+# User visits the /blog page and sees a list of all blog entries by all users.
+# User clicks on the title of a blog entry on the /blog page and lands on the individual blog entry page.
+# User clicks "Logout" and is redirected to the /blog page and is unable to access the /newpost page (is redirected to /login page instead).
+
+
 # # the Home page (index.html) will display the posts by one user
 # # all on one page. 
 # # @app.route('/index', methods=['POST', 'GET'])
@@ -161,8 +166,9 @@ def login():
 #         blog_name = request.form['blog']
 #         new_blog = Blog()
 
-
-
+@app.route('/blog', methods='POST', 'GET')
+def view_blog():
+    
 #`''``From get-it-done''`
 # @app.route('/', methods=['POST', 'GET'])
 # def index():
