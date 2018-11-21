@@ -166,8 +166,8 @@ def login():
 #         blog_name = request.form['blog']
 #         new_blog = Blog()
 
-@app.route('/blog', methods='POST', 'GET')
-def view_blog():
+# @app.route('/blog', methods='POST', 'GET')
+# def view_blog():
     
 #`''``From get-it-done''`
 # @app.route('/', methods=['POST', 'GET'])
