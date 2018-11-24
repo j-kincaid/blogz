@@ -3,6 +3,10 @@ Jessica Kincaid
 Blogz Assignment 
 
 blog.html
+
+directed from the "all posts" link on the home page
+This page displays all of the posts by all users. 
+
 -->
 
 {% extends "base.html" %}
@@ -23,6 +27,10 @@ blog.html
         <li>
         <p>{{blog.body}}</p>
         </li>
+        <li>
+        <p>{{blog.username}}</p>
+        </li>
+
 <hr />
         {% endfor %}
     </ul>
