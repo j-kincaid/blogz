@@ -1,3 +1,9 @@
+# November 24, 2018
+# Jessica Kincaid
+# Blogz Assignment 
+
+# hashUtils.py
+
 import hashlib
 import random
 import string
