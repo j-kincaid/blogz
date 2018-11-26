@@ -17,16 +17,12 @@ db = SQLAlchemy(app)
 # Add a session object and 
 app.secret_key = 'LD@R&tEX55gl'
 
-
-############# Storing passwords in the db is not a good idea, so eventually I will modify it accordingly.
-
 class Blog(db.Model): # Create an instance of the Blog class
     id = db.Column(db.Integer, primary_key=True) 
     title = db.Column(db.String(200)) # Creates a property that will map to a column of type VARCHAR(200) in the blog table.
     body = db.Column(db.String(2000))
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-# Amend the constructor so that it takes in a user (owner) object 
     def __init__(self, title, body, owner):
         self.title = title
         self.body = body
@@ -54,6 +50,10 @@ def index():
 #### I don't know how I'm going to do this yet ##########
 ### Add in ('/blog', methods=['GET']) # This blog route displays all posts by a single user.
     # return render_template('singleUser.html')
+
+# @app.route('/blog', methods=['GET']) # The blog route displays all posts by a single user.
+# def index():
+#     return render_template('singleUser.html')
 
 
 
@@ -150,23 +150,15 @@ def login():
     return render_template('login.html', login_error=login_error)
 
 
-# ################### Functionality Check: ##################
-###############_ MAKE A HOMEPAGE _##############
-# User is logged in and adds a new blog post, then is redirected to a page featuring the individual blog entry they just created (as in Build-a-Blog).
-# User visits the /blog page and sees a list of all blog entries by all users.
-# User clicks on the title of a blog entry on the /blog page and lands on the individual blog entry page.
-# User clicks "Logout" and is redirected to the /blog page and is unable to access the /newpost page (is redirected to /login page instead).
 
-
-# # the Home page (index.html) will display the posts by one user
-# # all on one page. 
-# # @app.route('/index', methods=['POST', 'GET'])
-# # def index():
-#     owner = User.query.filter_by(username=session['username']).first()
-# #     if request.method == 'POST':
-#         blog_name = request.form['blog']
-#         new_blog = Blog()
-
+@app.route('/index', methods=['POST', 'GET'])
+def view_blog():
+    id=request.args.get('id')
+    if id:
+        user= User.query.filter_by(id=id).first()
+        return render_template('blog.html', blog=blog)
+    user = User.query.all()
+    return render_template('index.html', user=user)
 # @app.route('/blog', methods='POST', 'GET')
 # def view_blog():
     
@@ -180,12 +172,6 @@ def login():
 
 
 #     owner = User.query.filter_by(email=session['email']).first()
-
-#     if request.method == 'POST':
-#         task_name = request.form['task']
-#         new_task = Task(task_name, owner) # Create a new task object
-#         db.session.add(new_task)
-#         db.session.commit() # commit it to the db
 
 #     tasks = Task.query.filter_by(completed=False, owner=owner).all() 
 #     # only give me the tasks for which the completed column has the value False

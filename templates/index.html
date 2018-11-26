@@ -11,13 +11,20 @@ Displays all of the users' names, linking each to their individual page.
 {% extends "base.html" %}
 <h1>blog users!</h1>
 
+{% block content %}
+
+{% if blogz|length == 0 %}
+<p>No users yet</p>
+{% else %}
     <ul>
         {% for users in blogz %}
-        <li><a href="post.html">{{user.name}}</a>
+
+        <li>
+
+        </a href="./?id={{blog.user}}">{{blog.user}}</a>
         </li>
         {% endfor %}
     </ul>
-
-{% block content %}
+{% endif%}
 
 {% endblock %}

@@ -10,10 +10,8 @@ This template will display only the blogs associated with a single given author.
 
 {% extends "base.html" %}
 {% block content %}
-<!doctype html>
-<html>
   <body>
-
+<h1>My posts</h1>
         <ul>
                 {% for user in blogz %}
                 
@@ -30,23 +28,5 @@ This template will display only the blogs associated with a single given author.
                 {% endfor %}
             </ul>
 
-    
-    <h1>Add a Blog Entry</h1>
-
-    <form action='/newpost'  method='POST'>
-        <label>Title for your new blog:
-            <input type="text" name="title" value="{{title}}" /><span class="error"style="color:red;">{{title_error}}</span>
-        </label>
-        <br />
-        <br />
-        <label>Write your thoughts:
-        </label> 
-        <br />
-        <textarea rows="6" cols="40" name='body'>{{body}}</textarea><span class="error" style="color:red;" >{{body_error}}</span>
-        <br />
-        <input type="submit" value='Add Entry' />
-    </form>
-  </body>
-</html>
 {% endblock %}
 
