@@ -14,12 +14,12 @@ app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:greenenchiladas@localhost:8889/blogz'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
-# Add a session object and 
+
 app.secret_key = 'LD@R&tEX55gl'
 
-class Blog(db.Model): # Create an instance of the Blog class
+class Blog(db.Model): 
     id = db.Column(db.Integer, primary_key=True) 
-    title = db.Column(db.String(200)) # Creates a property that will map to a column of type VARCHAR(200) in the blog table.
+    title = db.Column(db.String(200)) 
     body = db.Column(db.String(2000))
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
@@ -44,15 +44,7 @@ def index():
     user_list = User.query.all()
     return render_template('index.html', users=user_list)
 
-#### I don't know how I'm going to do this yet ##########
-### Add in ('/blog', methods=['GET']) # This blog route displays all posts by a single user.
-    # return render_template('singleUser.html')
-
-
-
 @app.route('/newpost', methods=['POST','GET']) 
-# Submit blogs through '/newpost' 
-# After you submit, the main page is displayed.
 def process_add_entry():
     title_error = ''
     body_error = ''
@@ -60,9 +52,7 @@ def process_add_entry():
     body = ''
 
     owner = User.query.filter_by(username=session['username']).first()
-
     if request.method == 'POST': # Create a new post
-        
         title = request.form['title']
         body = request.form['body']
         new_blog = Blog(title, body, owner)
@@ -78,7 +68,6 @@ def process_add_entry():
            
     return render_template('newpost.html', title=title, body=body, title_error=title_error, body_error=body_error)
     
-
 @app.route('/signup', methods=['GET','POST'])
 def signup():
     username = ''
@@ -92,15 +81,13 @@ def signup():
         
         if " " in username or len(username) < 3 or len(username) > 20 or "":
             username_error = "Username cannot have spaces and must be between 3 and 20 characters"
-    
-   # return render_template("index.html", username=username, username_error=username_error)
+
 
     
         if len(password) > 20 or len(password) < 3 or "" or " " in password:
             password_error = 'Password must be between 3 and 20 characters.'
         
         if password != v_password:
-            # password must match verified password
             v_password_error = "Passwords must match."
 
         existing_user = User.query.filter_by(username=username).first()
@@ -113,7 +100,6 @@ def signup():
             session['username'] = username
             return render_template("blog.html", username=username)
 
-            # redisplay the form with the error messages.
     return render_template("signup.html", username=username, username_error=username_error, password_error=password_error, v_password_error=v_password_error)
 
 @app.route('/logout', methods=['GET'])
@@ -143,36 +129,14 @@ def login():
     return render_template('login.html', login_error=login_error)
 
 
-@app.route('/index', methods=['POST', 'GET'])
-def view_blog():
-    id=request.args.get('id')
-    if id:
-        user= User.query.filter_by(id=id).first()
-        return render_template('index.html', blog=blog)
-    user = User.query.all()
-    return render_template('blog.html', user=user)
-# @app.route('/blog', methods='POST', 'GET')
+# @app.route('/index', methods=['POST', 'GET'])
 # def view_blog():
-    
-#`''``From get-it-done''`
-# @app.route('/', methods=['POST', 'GET'])
-# def index():
-
-# ###################_______________##################
-# #### Where the new task (or new blog post) is created 
-# ###################_______________##################
-
-
-#     owner = User.query.filter_by(email=session['email']).first()
-
-#     tasks = Task.query.filter_by(completed=False, owner=owner).all() 
-#     # only give me the tasks for which the completed column has the value False
-#     completed_tasks = Task.query.filter_by(completed=True).all()
-#     return render_template('todos.html',title="Get It Done!", tasks=tasks, completed_tasks=completed_tasks)
-
-
-
-
+#     id=request.args.get('id')
+#     if id:
+#         user= User.query.filter_by(id=id).first()
+#         return render_template('index.html', blog=blog)
+#     user = User.query.all()
+#     return render_template('blog.html', user=user)
 
 
 if __name__ == '__main__':
