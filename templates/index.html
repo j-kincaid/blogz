@@ -13,15 +13,13 @@ Displays all of the users' names, linking each to their individual page.
 
 {% block content %}
 
-{% if blogz|length == 0 %}
+{% if users|length == 0 %}
 <p>No users yet</p>
 {% else %}
     <ul>
-        {% for users in blogz %}
-
+        {% for user in blogz %}
         <li>
-
-        </a href="./?id={{blog.user}}">{{blog.user}}</a>
+        </a href="./?id={{blog.username}}">{{blog.username}}</a>
         </li>
         {% endfor %}
     </ul>

@@ -51,10 +51,6 @@ def index():
 ### Add in ('/blog', methods=['GET']) # This blog route displays all posts by a single user.
     # return render_template('singleUser.html')
 
-# @app.route('/blog', methods=['GET']) # The blog route displays all posts by a single user.
-# def index():
-#     return render_template('singleUser.html')
-
 
 
 @app.route('/newpost', methods=['POST','GET']) 
@@ -150,15 +146,14 @@ def login():
     return render_template('login.html', login_error=login_error)
 
 
-
 @app.route('/index', methods=['POST', 'GET'])
 def view_blog():
     id=request.args.get('id')
     if id:
         user= User.query.filter_by(id=id).first()
-        return render_template('blog.html', blog=blog)
+        return render_template('index.html', blog=blog)
     user = User.query.all()
-    return render_template('index.html', user=user)
+    return render_template('blog.html', user=user)
 # @app.route('/blog', methods='POST', 'GET')
 # def view_blog():
     
