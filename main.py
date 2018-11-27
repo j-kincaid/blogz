@@ -40,12 +40,9 @@ class User(db.Model):
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    id=request.args.get('id')
-    if id:
-        blog= Blog.query.filter_by(id=id).first()
-        return render_template('post.html', blog=blog)
-    blogz = Blog.query.all()
-    return render_template('blog.html', blogz=blogz)
+    user_list = []
+    user_list = User.query.all()
+    return render_template('index.html', users=user_list)
 
 #### I don't know how I'm going to do this yet ##########
 ### Add in ('/blog', methods=['GET']) # This blog route displays all posts by a single user.

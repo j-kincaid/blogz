@@ -17,9 +17,9 @@ Displays all of the users' names, linking each to their individual page.
 <p>No users yet</p>
 {% else %}
     <ul>
-        {% for user in blogz %}
+        {% for user in users %}
         <li>
-        </a href="./?id={{blog.username}}">{{blog.username}}</a>
+        <a href="/user?id={{user.id}}">{{user.username}}</a>
         </li>
         {% endfor %}
     </ul>
