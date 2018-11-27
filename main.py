@@ -44,6 +44,16 @@ def index():
     user_list = User.query.all()
     return render_template('index.html', users=user_list)
 
+
+@app.route('/blog', methods=['POST', 'GET'])
+def view_blog():
+    id=request.args.get('id')
+    if id:
+        user= User.query.filter_by(id=id).first()
+        return render_template('index.html', user=user)
+    user = User.query.all()
+    return render_template('blog.html', user=user)
+
 @app.route('/newpost', methods=['POST','GET']) 
 def process_add_entry():
     title_error = ''
@@ -128,15 +138,6 @@ def login():
             login_error = "Username or password is incorrect"
     return render_template('login.html', login_error=login_error)
 
-
-# @app.route('/index', methods=['POST', 'GET'])
-# def view_blog():
-#     id=request.args.get('id')
-#     if id:
-#         user= User.query.filter_by(id=id).first()
-#         return render_template('index.html', blog=blog)
-#     user = User.query.all()
-#     return render_template('blog.html', user=user)
 
 
 if __name__ == '__main__':
