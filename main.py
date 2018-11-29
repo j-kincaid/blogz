@@ -44,22 +44,6 @@ def index():
     user_list = User.query.all()
     return render_template('index.html', users=user_list)
 
-
-# @app.route('/', methods=['POST', 'GET'])
-# def index():
-#     id=request.args.get('id')
-#     if id:
-#         blog= Blog.query.filter_by(id=id).first()
-#         return render_template('post.html', blog=blog)
-#     blogz = Blog.query.all()
-#     return render_template('blog.html', blogz=blogz)
-
-    # id=request.args.get('id')
-    # if id:
-    #     blog=Blog.query.filter_by(id=id).first()
-    # blogz = Blog.query.all()
-    # return render_template('blog.html', blogz=blogz)
-
 @app.route('/blog', methods=['POST', 'GET'])
 def view_blog():
     id=request.args.get('id')
