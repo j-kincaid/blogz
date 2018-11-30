@@ -40,6 +40,10 @@ class User(db.Model):
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
+    id=request.args.get('id')
+    if id:
+        blog= Blog.query.filter_by(id=id).first()
+        return render_template('singleUser.html', blog=blog)
     user_list = []
     user_list = User.query.all()
     return render_template('index.html', users=user_list)
@@ -48,7 +52,8 @@ def index():
 def view_blog():
     id=request.args.get('id')
     if id:
-        blog=Blog.query.filter_by(id=id).first()
+        blogz=Blog.query.filter_by(id=id).first()
+        return render_template('post.html', blogz=blogz)
     blogz = Blog.query.all()
     return render_template('blog.html', blogz=blogz)
 

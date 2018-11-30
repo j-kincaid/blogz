@@ -13,18 +13,17 @@ This template will display only the blogs associated with a single given author.
   <body>
 <h1>My posts</h1>
         <ul>
-                {% for blog in blogs %}
+                {% for blog in blogz %}
                 
-                <li>
-                    <a href="./?id={{blog.owner}}" ></h1>{{blog.owner}}</h1></a>
-                </li>
-                <li>
-                    <p>{{blog.body}}</p>
-                </li>
-                <li>
-                    <p><small>{{blog.username}}</small></p>
-                </li>
-        <hr />
+                    <li><a href="/?id={{blog.id}}"><h1>{{blog.title}}</h1></a>
+                    </li>
+                    <li>
+                        <p>{{blog.body}}</p>
+                    </li> 
+                    <li>
+                        <p><small>"by " + {{blog.username}}</small></p>
+                    </li>
+        <hr />  
                 {% endfor %}
             </ul>
 
