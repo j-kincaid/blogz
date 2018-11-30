@@ -11,18 +11,36 @@ This template will display only the blogs associated with a single given author.
   <body>
 <h1>My posts</h1>
         <ul>
-                {% for user_id in blog_list %}
+                {% for user in blogz %}
                 
-                    <li><a href="/blog?={{blog.user_id}}"><h1>{{blog.title}}</h1></a>
+                    <li><a href="/blog?={{blog.user}}"><h1>{{blog.title}}</h1></a>
                     </li>
                     <li>
                         <p>{{blog.body}}</p>
                     </li> 
                     <li>
-                        <p><small>"by " + {{blog.username}}</small></p>
+                        <p><small>"by " + {{blog.owner.username}}</small></p>
                     </li>
         <hr />  
                 {% endfor %}
             </ul>
 
 {% endblock %}
+<!-- 
+Note:
+
+@app.route('/', methods=['POST', 'GET'])
+def index():
+    user_list = []
+    user_list = User.query.all()
+    return render_template('index.html', users=user_list) 
+
+
+@app.route('/blog', methods=['POST', 'GET'])
+def view_blog():
+    id=request.args.get('id')
+    # if id:
+    #     blog=Blog.query.filter_by(id=id).first()
+    blogz = Blog.query.all()
+    return render_template('blog.html', blogs=blogz)
+-->

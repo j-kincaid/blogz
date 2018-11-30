@@ -19,13 +19,13 @@ Displays all of the users' names, linking each to their individual page.
 <h1>blog users!</h1>
 
         <ul>
-            {% for user_id in user_list %}
+            {% for user in user_list %}
             <li>
-                <a href="./?id={{user.user_id}}"><h1>{{user.username}}</h1></a>
+                <a href="./?id={{user.username}}"><h1>{{user.username}}</h1></a>
             </li>
             <li>
-                <a href="./?singleUser={{blog_id}}"><h1>{{user.blog}}</h1></a>
-            </li>
+                <a href="/singleUser={{user.blog}}"><h1>{{user.blog}}</h1></a>
+            </li> 
 
             {% endfor %}
         </ul>
@@ -33,3 +33,11 @@ Displays all of the users' names, linking each to their individual page.
 <!-- M 11/26 you’re left with a route to complete at /user
 you can rename that route.  it doesn’t have to be /user if you choose to use a different route, remember to change index.html so that the links point there instead-->
 {% endblock %}
+<!-- 
+Note:
+
+@app.route('/', methods=['POST', 'GET'])
+def index():
+    user_list = []
+    user_list = User.query.all()
+    return render_template('index.html', users=user_list) -->

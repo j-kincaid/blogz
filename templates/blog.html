@@ -2,7 +2,8 @@
 Jessica Kincaid
 Blogz Assignment 
 blog.html
-directed from the "all posts" link on the home page
+
+Directed from the "all posts" link on the home page
 This page displays all of the posts by all users. 
 -->
 
@@ -20,17 +21,35 @@ This page displays all of the posts by all users.
         {% for blog in blogz %}
         
         <li>
-            <a href="./?id={{blog.id}}"><h1>{{blog.title}}</h1></a>
+            <a href="./?id={{blog.user}}"><h3>{{blog.title}}</h3></a>
             </li>
-            <li>
             <p>{{blog.body}}</p>
             </li>
-        <li>
+        <!-- <li>
         <a href="./?id={{blog.user}}"><h1>{{blog.user}}</h1> </a>
-        </li>
-<hr />
+        </li> -->
+    <hr />
         {% endfor %}
     </ul>
     
 {% endif %}
 {% endblock %}
+
+<!-- 
+Note:
+
+@app.route('/', methods=['POST', 'GET'])
+def index():
+    user_list = []
+    user_list = User.query.all()
+    return render_template('index.html', users=user_list) 
+
+
+@app.route('/blog', methods=['POST', 'GET'])
+def view_blog():
+    id=request.args.get('id')
+    # if id:
+    #     blog=Blog.query.filter_by(id=id).first()
+    blogz = Blog.query.all()
+    return render_template('blog.html', blogs=blogz)
+-->
