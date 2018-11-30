@@ -40,11 +40,11 @@ class User(db.Model):
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-   user_id=request.args.get('user_id')
-   if user_id:
+    #user_id=request.args.get('user_id')
+    #if user_id:
        #blog= Blog.query.filter_by(id=id).first()
-        blog= Blog.query.filter_by(user_id=user_id).all()   
-        return render_template('singleUser.html', blog=blog, user_id=user_id)
+        # user_list= Blog.query.filter_by(user_id=user_id).all()   
+        # return render_template('singleUser.html', user_id=user_id)
 
    #user_list = []
    user_list = User.query.all()
@@ -52,12 +52,12 @@ def index():
 
 @app.route('/blog', methods=['POST', 'GET'])
 def view_blog():
-    user_id=request.args.get('user_id')
-    if user_id:
-        blogz=Blog.query.filter_by(user_id=user_id).first()
-        return render_template('index.html', blogz=blogz)
-    blogz = Blog.query.all()
-    return render_template('blog.html', blogz=blogz)
+    blog_id=request.args.get('blog_id')
+    if blog_id:
+        blog_list=Blog.query.filter_by(blog_id=blog_id).first()
+        return render_template('index.html', blog_list=blog_list)
+    blog_list = Blog.query.all()
+    return render_template('blog.html', blog_id=blog_id, blog_list=blog_list)
 
 @app.route('/newpost', methods=['POST','GET']) 
 def process_add_entry():
