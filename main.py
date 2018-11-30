@@ -50,10 +50,10 @@ def index():
 
 @app.route('/blog', methods=['POST', 'GET'])
 def view_blog():
-    id=request.args.get('id')
-    if id:
-        blogz=Blog.query.filter_by(id=id).first()
-        return render_template('post.html', blogz=blogz)
+    user_id=request.args.get('user_id')
+    if user_id:
+        blogz=Blog.query.filter_by(user_id=user_id).first()
+        return render_template('index.html', blogz=blogz)
     blogz = Blog.query.all()
     return render_template('blog.html', blogz=blogz)
 
