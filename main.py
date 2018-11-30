@@ -40,11 +40,11 @@ class User(db.Model):
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-   id=request.args.get('id')
-   if id:
+   user_id=request.args.get('user_id')
+   if user_id:
        #blog= Blog.query.filter_by(id=id).first()
-        blog= Blog.query.filter_by(id=id).all()   
-        return render_template('singleUser.html', blog=blog)
+        blog= Blog.query.filter_by(user_id=user_id).all()   
+        return render_template('singleUser.html', blog=blog, user_id=user_id)
 
    #user_list = []
    user_list = User.query.all()

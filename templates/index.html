@@ -27,7 +27,7 @@ Displays all of the users' names, linking each to their individual page.
 
                 {% for blog in blogz %}
                     <li>
-                        <a href="./?id={{user.id}}"><h1>{{user.blog}}</h1></a>
+                        <a href="/?blog?={{user_id}}"><h1>{{user.blog}}</h1></a>
                     </li>
                 {% endfor %} 
                 </a>
