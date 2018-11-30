@@ -40,13 +40,15 @@ class User(db.Model):
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    id=request.args.get('id')
-    if id:
-        blog= Blog.query.filter_by(id=id).first()
+   id=request.args.get('id')
+   if id:
+       #blog= Blog.query.filter_by(id=id).first()
+        blog= Blog.query.filter_by(id=id).all()   
         return render_template('singleUser.html', blog=blog)
-    user_list = []
-    user_list = User.query.all()
-    return render_template('index.html', users=user_list)
+
+   #user_list = []
+   user_list = User.query.all()
+   return render_template('index.html', users=user_list)
 
 @app.route('/blog', methods=['POST', 'GET'])
 def view_blog():
