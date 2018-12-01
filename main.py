@@ -59,6 +59,9 @@ def list_blogs():
         # return redirect('index.html')
     if user_id:
         #### Place for new function
+        blogz=Blog.query.filter_by(owner_id=user_id).all()
+        return render_template('blog.html', blogz=blogz)
+
     blogz = Blog.query.all()
     return render_template('blog.html', blogz=blogz)
 
