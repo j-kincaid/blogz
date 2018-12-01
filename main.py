@@ -43,17 +43,19 @@ def index():
     id=request.args.get('id')
     if id:
         user_list= Blog.query.filter_by(id=id).first()
-        return render_template('index.html')
+        return render_template('singleUser.html')
     user_list = []
     user_list = User.query.all()
     return render_template('index.html', user_list=user_list)
 
 @app.route('/blog', methods=['POST', 'GET'])
 def list_blogs():
-    # id=request.args.get('id')
-    # if id:
-    #     user_list=User.query.filter_by(id=id).first()
-    #     return redirect('index.html')
+    user_id=request.args.get('user_id')
+    if user_id:
+        blogz=Blog.query.filter_by(user_id=user_id).all()
+        return render_template('post.html', blogz=blogz)
+        # user_list=User.query.filter_by(id=id).first()
+        # return redirect('index.html')
     blogz = Blog.query.all()
     return render_template('blog.html', blogz=blogz)
 
