@@ -51,11 +51,14 @@ def index():
 @app.route('/blog', methods=['POST', 'GET'])
 def list_blogs():
     blog_id=request.args.get('id')
+    user_id=request.args.get('user')
     if blog_id:
         blogz=Blog.query.filter_by(id=blog_id).all()
         return render_template('blog.html', blogz=blogz)
         # user_list=User.query.filter_by(id=id).first()
         # return redirect('index.html')
+    if user_id:
+        #### Place for new function
     blogz = Blog.query.all()
     return render_template('blog.html', blogz=blogz)
 
