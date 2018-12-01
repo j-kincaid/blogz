@@ -10,7 +10,7 @@ This page displays all of the posts by all users.
 {% extends "base.html" %}
 {% block content %}
 
-<h1>blog posts!</h1>
+<h2>blog posts!</h2>
 
 {% if blogz|length == 0 %}
 <p>No entries yet</p>
@@ -21,13 +21,12 @@ This page displays all of the posts by all users.
         {% for blog in blogz %}
         
         <li>
-            <a href="./?id={{blog.user}}"><h3>{{blog.title}}</h3></a>
+            <a href="./?id={{blog.user}}">
+                <h3>{{blog.title}}</h3>
+            </a>
             </li>
             <p>{{blog.body}}</p>
             </li>
-        <!-- <li>
-        <a href="./?id={{blog.user}}"><h1>{{blog.user}}</h1> </a>
-        </li> -->
     <hr />
         {% endfor %}
     </ul>

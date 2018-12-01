@@ -21,10 +21,10 @@ Displays all of the users' names, linking each to their individual page.
         <ul>
             {% for user in user_list %}
             <li>
-                <a href="./?id={{user.username}}"><h1>{{user.username}}</h1></a>
+                <a href="/user?id={{user.id}}"><h1>{{user.username}}</h1></a>
             </li>
             <li>
-                <a href="/singleUser={{user.blog}}"><h1>{{user.blog}}</h1></a>
+                <a href="/singleUser={{user.blog}}"><h3>{{user.blog}}</h3></a>
             </li> 
 
             {% endfor %}

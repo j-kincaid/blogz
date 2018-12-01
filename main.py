@@ -42,20 +42,21 @@ class User(db.Model):
 def index():
     id=request.args.get('id')
     if id:
-        blog= Blog.query.filter_by(id=id).first()
-        return render_template('post.html', blog=blog)
+        user_list= Blog.query.filter_by(id=id).first()
+        return render_template('index.html')
     user_list = []
     user_list = User.query.all()
-    return render_template('index.html', users=user_list)
+    return render_template('index.html', user_list=user_list)
 
 @app.route('/blog', methods=['POST', 'GET'])
-def view_blog():
-    id=request.args.get('id')
-    if id:
-        blogz=Blog.query.filter_by(id=id).first()
-        return render_template('singleUser.html', blogz=blogz)
+def list_blogs():
+    # id=request.args.get('id')
+    # if id:
+    #     user_list=User.query.filter_by(id=id).first()
+    #     return redirect('index.html')
     blogz = Blog.query.all()
     return render_template('blog.html', blogz=blogz)
+
 
 @app.route('/newpost', methods=['POST','GET']) 
 def process_add_entry():
@@ -96,7 +97,6 @@ def signup():
             username_error = "Username cannot have spaces and must be between 3 and 20 characters"
 
 
-    
         if len(password) > 20 or len(password) < 3 or "" or " " in password:
             password_error = 'Password must be between 3 and 20 characters.'
         
@@ -111,7 +111,7 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
             session['username'] = username
-            return render_template("blog.html", username=username)
+            return render_template("newpost.html", username=username)
 
     return render_template("signup.html", username=username, username_error=username_error, password_error=password_error, v_password_error=v_password_error)
 
@@ -140,8 +140,6 @@ def login():
         else:
             login_error = "Username or password is incorrect"
     return render_template('login.html', login_error=login_error)
-
-
 
 if __name__ == '__main__':
 
