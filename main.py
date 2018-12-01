@@ -89,7 +89,8 @@ def process_add_entry():
             return redirect(url_for('list_blogs', id=new_blog.id))
            
     return render_template('newpost.html', title=title, body=body, title_error=title_error, body_error=body_error)
-    
+
+
 @app.route('/signup', methods=['GET','POST'])
 def signup():
     username = ''
