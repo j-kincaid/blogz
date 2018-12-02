@@ -1,0 +1,34 @@
+<!-- December 2, 2018
+Jessica Kincaid
+Blogz Assignment 
+singleUser.html
+
+This page displays only the blogs associated with a single given author. It will be used when we dynamically generate a page using a GET request with a user query parameter on the /blog route (similar to how we dynamically generated individual blog entry pages in the last assignment)
+-->
+
+{% extends "base.html" %}
+{% block content %}
+
+<h2>blog posts!</h2>
+
+{% if blogz|length == 0 %}
+<p>No entries yet</p>
+
+{% else %}
+
+    <ul>
+        {% for blog in blogz %}
+        
+        <li>
+            <a href="/blog?id={{blog.owner.id}}">
+                <h3>{{blog.title}}</h3>
+            </a>
+            </li>
+            <p>{{blog.body}}</p>
+            </li>
+    <hr />
+        {% endfor %}
+    </ul>
+    
+{% endif %}
+{% endblock %}

@@ -27,6 +27,13 @@ This page displays all of the posts by all users.
             </li>
             <p>{{blog.body}}</p>
             </li>
+        </li>
+        <li>
+        <p>written by</p>
+        <a href="/singleUser?id={{blog.owner.id}}">
+        <p>{{blog.owner.username}}</p>
+        </a>
+        </li>
     <hr />
         {% endfor %}
     </ul>
